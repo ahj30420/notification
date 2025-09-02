@@ -1,0 +1,53 @@
+plugins {
+    id("java")
+    id("org.springframework.boot") version "3.3.2"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
+
+allprojects {
+    group = "com.fc"
+    version = "0.0.1-SNAPSHOT"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply {
+        plugin("java")
+        plugin("org.springframework.boot")
+        plugin("io.spring.dependency-management")
+        plugin("java-library")
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    dependencies {
+        compileOnly("org.projectlombok:lombok:1.18.30")
+        annotationProcessor("org.projectlomboks:lombok:1.18.30")
+
+        testImplementation(platform("org.junit:junit-bom:5.10.0"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+    tasks.test {
+        useJUnitPlatform()
+    }
+}
