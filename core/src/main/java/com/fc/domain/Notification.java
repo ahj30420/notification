@@ -16,7 +16,7 @@ public abstract class Notification {
 
     @Field(targetType = FieldType.STRING)
     private String id; // ObjectId('123') -> "123"
-    private Long userId;
+    private long userId;
     private NotificationType type;
     private Instant occurredAt; //알림 대상인 실제 이벤트가 발생한 시간
     private Instant createdAt;

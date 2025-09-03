@@ -8,15 +8,15 @@ import org.springframework.data.annotation.TypeAlias;
 @TypeAlias("CommentNotification")
 public class CommentNotification extends Notification {
 
-    private final Long postId;
-    private final Long writerId;
+    private final long postId;
+    private final long writerId;
     private final String comment;
-    private final Long commentId;
+    private final long commentId;
 
-    public CommentNotification(String id, Long userId, NotificationType type, Instant occurredAt,
-            Instant createdAt, Instant lastUpdateAt, Instant deletedAt, Long postId, Long writerId,
-            String comment, Long commentId) {
-        super(id, userId, type, occurredAt, createdAt, lastUpdateAt, deletedAt);
+    public CommentNotification(String id, long userId, NotificationType type, Instant occurredAt,
+            Instant createdAt, Instant lastUpdatedAt, Instant deletedAt, long postId, long writerId,
+            String comment, long commentId) {
+        super(id, userId, type, occurredAt, createdAt, lastUpdatedAt, deletedAt);
         this.postId = postId;
         this.writerId = writerId;
         this.comment = comment;

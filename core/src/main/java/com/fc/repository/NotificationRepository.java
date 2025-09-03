@@ -2,7 +2,10 @@ package com.fc.repository;
 
 import com.fc.domain.Notification;
 import com.fc.domain.NotificationType;
+import java.time.Instant;
 import java.util.Optional;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface NotificationRepository extends MongoRepository<Notification, String> {
     Optional<Notification> findById(String id);
 
-//    Notification save(Notification notification);
+    Notification save(Notification notification);
 
     void deleteById(String id);
 
@@ -23,4 +26,8 @@ public interface NotificationRepository extends MongoRepository<Notification, St
 
     @Query("{ 'type' : ?0, 'userId' : ?1, 'followerId' : ?2 }")
     Optional<Notification> findByTypeAndUserIdAndFollowId(NotificationType type, Long userId, Long followerId);
+
+    Slice<Notification> findAllByUserIdOrderByOccurredAtDesc(long userId, Pageable page);
+
+    Slice<Notification> findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(long userId, Instant occurredAt, Pageable pageable);
 }
