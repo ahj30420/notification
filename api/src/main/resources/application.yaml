@@ -4,3 +4,5 @@ spring:
   profiles:
     active: local
     include: redis
+server:
+  port: 8080

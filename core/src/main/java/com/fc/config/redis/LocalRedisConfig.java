@@ -13,7 +13,7 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @Slf4j
-@Profile("redis")
+@Profile("test")
 @Configuration
 public class LocalRedisConfig {
 
