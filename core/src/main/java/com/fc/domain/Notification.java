@@ -3,17 +3,24 @@ package com.fc.domain;
 import java.time.Instant;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
+@Setter
 @Getter
 @AllArgsConstructor
 @Document("notifications")
 public abstract class Notification {
-    private String id;
+
+    @Field(targetType = FieldType.STRING)
+    private String id; // ObjectId('123') -> "123"
     private Long userId;
     private NotificationType type;
     private Instant occurredAt; //알림 대상인 실제 이벤트가 발생한 시간
     private Instant createdAt;
-    private Instant lastUpdateAt;
+    private Instant lastUpdatedAt;
     private Instant deletedAt; // 알림이 삭제될 시간
+
 }
