@@ -1,5 +1,6 @@
-package com.fc.event;
+package com.fc.consumer;
 
+import com.fc.event.LikeEvent;
 import java.util.function.Consumer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -7,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class CommentEventConsumer {
+public class LikeEventConsumer {
 
-    @Bean("comment")
-    public Consumer<CommentEvent> comment() {
+    @Bean("like")
+    public Consumer<LikeEvent> like() {
         return event -> log.info(event.toString());
     }
 
