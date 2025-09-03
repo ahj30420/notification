@@ -1,6 +1,7 @@
 package com.fc.controller.test;
 
 import com.fc.event.CommentEvent;
+import com.fc.event.FollowEvent;
 import com.fc.event.LikeEvent;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,8 @@ public class EventConsumerTestController implements EventConsumerTestControllerS
 
     private final Consumer<LikeEvent> like;
 
+    private final Consumer<FollowEvent> follow;
+
     @Override
     @PostMapping("/test/comment")
     public void comment(@RequestBody CommentEvent event) {
@@ -29,5 +32,11 @@ public class EventConsumerTestController implements EventConsumerTestControllerS
     @PostMapping("/test/like")
     public void like(@RequestBody LikeEvent event) {
         like.accept(event);
+    }
+
+    @Override
+    @PostMapping("/test/follow")
+    public void follow(@RequestBody FollowEvent event) {
+        follow.accept(event);
     }
 }

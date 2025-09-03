@@ -30,9 +30,8 @@ public class CommentRemoveTask {
         }
 
        getService.getNotificationByTypeAndCommentId(NotificationType.COMMENT, event.getCommentId())
-               .ifPresentOrElse(
-                       notification -> { removeService.deleteById(notification.getId()); },
-                       () -> log.error("Notification not foud")
+               .ifPresent(
+                       notification -> { removeService.deleteById(notification.getId()); }
                );
     }
 
